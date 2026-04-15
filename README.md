@@ -13,10 +13,11 @@ kBlog 是轻量的静态网站生成器，让你立即开始记录自己的 idea
 3. 添加一个新的 .md 后缀的 Markdown 文件, 编辑一些内容然后提交
 
 ### 本地生成
-1. 准备 Lua 开发环境
+Markdown 到 HTML 的转换是由 Lua 语言实现的，所以需要准备好 Lua 运行时环境
+1. 安装 lua 运行时和库
     - Ubuntu、Debian 建议 Lua 版本 >= 5.4，Arch Linux 直接装默认的 Lua 5.5 即可。下面的命令以 apt 为例
-    - 安装lua、luarocks
-        - `sudo apt install lua5.4 liblua5.4-dev luarocks`
+    - 安装 lua、luarocks
+        - `sudo apt install lua5.4 luarocks`
     - 安装 lua 库 luafilesystem、aspect
         - `luarocks install luafilesystem --lua-version 5.4`
         - `luarocks install aspect --lua-version 5.4`

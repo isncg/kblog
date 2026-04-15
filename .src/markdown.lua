@@ -9,8 +9,6 @@
 ----------------------------------------------------------------------
 -- Utility functions
 ----------------------------------------------------------------------
-local inspect = require "inspect"
-
 local unpack = table.unpack or unpack
 
 -- Returns the result of mapping the values in table t through the function f
@@ -494,7 +492,7 @@ local function lists(array, sublist)
                 for i = 1, #array - 1 do
                     local type = array[i].type
                     local next_type = array[i + 1].type
-                    if (type == "blank" or type == "header" or type == "raw") and next_type == "list_item" then
+                    if (type == "blank" or type == "header" or type == "raw" or type == "normal") and next_type == "list_item" then
                         return i + 1
                     end
                 end
@@ -506,7 +504,7 @@ local function lists(array, sublist)
             for i = start, #array - 1 do
                 local type = array[i].type
                 local next_type = array[i + 1].type
-                if (type == "list_item" or type == "indented") and (next_type == "header" or next_type == "raw") then
+                if (type == "list_item" or type == "indented") and (next_type == "header" or next_type == "normal" or next_type == "raw") then
                     pos = i
                     break
                 end
@@ -764,7 +762,6 @@ function block_transform(text, sublist)
     lines = tables(lines)
     lines = codeblocks(lines)
     lines = headers(lines)
-    print("before lists", inspect.inspect(lines))
     lines = lists(lines, sublist)
     lines = blockquotes(lines)
     lines = blocks_to_html(lines)
